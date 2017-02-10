@@ -1,0 +1,43 @@
+<section class="artistpage">
+    <!-- Construct a form and control my list -->
+    <div class="search">
+        <h1>Artist Directory</h1>
+        <div class="search">
+            <a href="#!/apply"><button type="button" name="button">Apply</button></a>
+            <label class="formgroup">Search:</label>
+            <input type="text" placeholder="Search for Artists" autofocus ng-model="query">
+
+            <label class="formgroup">
+                <select ng-model="artistOrder">
+                    <option value="name">Name</option>
+                    <option value="reknown">Reknown</option>
+                </select>
+            </label>
+
+            <!-- Same name for both labels below to show that they are paired. -->
+            <label class="formgroup">
+          <input type="radio" name="direction" checked ng-model="direction">
+          Ascending
+        </label>
+
+            <label class="formgroup">
+          <input type="radio" name="direction" ng-model="direction" value="reverse">
+          Descending
+        </label>
+        </div>
+    </div>
+
+    <ul class="artistlist">
+        <!-- For loop retrieving items from artists array. -->
+        <li ng-animate="animate" class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder:direction">
+            <a href="#!/details/{{ artists.indexOf(item) }}">
+                <img ng-src="images/{{ item.shortname }}_tn.jpg" alt="Photo of {{ item.name }}" />
+                <div class="info">
+                    <h2>{{ item.name }}</h2>
+                    <h3>{{ item.reknown }}</h3>
+                </div>
+            </a>
+        </li>
+        <!-- End for loop. -->
+    </ul>
+</section>
